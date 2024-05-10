@@ -1,8 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from 'react'
 
-interface AuthContextType {
-  // Define your context properties and their types here
-}
+interface AuthContextType {}
 
 const AuthContext = React.createContext<AuthContextType | undefined>(undefined)
 
