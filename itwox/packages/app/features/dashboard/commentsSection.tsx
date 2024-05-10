@@ -49,7 +49,7 @@ export function CommentsList() {
 
   return (
     <>
-      <CommentsSectionList data={comments}> </CommentsSectionList>
+      <CommentsSectionList data={comments} />
     </>
   )
 }

@@ -6,7 +6,6 @@ import { useLink } from 'solito/link'
 import { FieldError, UseFormRegister } from 'react-hook-form'
 import { FormLogin } from 'app/features/auth/signInForm'
 
-const SignIn: React.FC = () => {
+export default function Page() {
   return <FormLogin></FormLogin>
 }
-export default SignIn

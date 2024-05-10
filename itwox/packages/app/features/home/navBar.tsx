@@ -16,13 +16,31 @@ import { useState } from 'react'
 import { useLink } from 'solito/link'
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link } from '@nextui-org/react'
 import { FormLogin } from 'app/features/auth/signInForm'
-import Logout from 'app/features/auth/authLogout'
-import Protected from '../auth/authProtected'
-import Unprotected from '../auth/authUnprotected'
-import AuthProvider, { AuthIsNotSignedIn, AuthIsSignedIn } from '../auth/authContext'
 import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom'
+import { useAuth } from 'app/features/services/appContext'
+interface AuthUser {
+  Name: string
+}
 
 export function NavigationBar() {
+  /*
+  const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth()
+
+  const logIn = (e) => {
+    e.preventDefault()
+    setIsLoggedIn(true)
+    setAuthUser({
+      Name: 'Jonh Doe',
+    })
+  }
+  const logOut = (e) => {
+    e.preventDefault()
+    setIsLoggedIn(false)
+    setAuthUser({null})
+  }
+
+  */
+
   const linkDashboard = useLink({
     href: '/dashboard',
   })
@@ -32,19 +50,10 @@ export function NavigationBar() {
   const linkHome = useLink({
     href: '/',
   })
-  const logOutLink = useLink({
-    href: '/logout',
-  })
-  const protectedLink = useLink({
-    href: '/protected',
-  })
 
   return (
     <Nav>
       <main className="container content">
-        <Button {...linkSignIn}>
-          <ButtonText>Sign In</ButtonText>
-        </Button>
         <Button {...linkHome}>
           <ButtonText>Home</ButtonText>{' '}
         </Button>
@@ -52,9 +61,41 @@ export function NavigationBar() {
           <ButtonText>Dashboard</ButtonText>
         </Button>
         <Button {...linkSignIn}>
-          <ButtonText>sadasd</ButtonText>
+          <ButtonText>Log Out</ButtonText>
+        </Button>
+
+        <Button {...linkSignIn}>
+          <ButtonText>Sign In</ButtonText>
         </Button>
       </main>
     </Nav>
   )
 }
+
+/*
+ <Nav>
+      <main className="container content">
+        <Button {...linkHome}>
+          <ButtonText>Home</ButtonText>{' '}
+        </Button>
+        <Button {...linkDashboard}>
+          <ButtonText>Dashboard</ButtonText>
+        </Button>
+        <span>User is currently : {isLoggedIn ? 'LoggedIn' : 'LoggedOut'}</span>
+        {isLoggedIn ? <span> User name : {authUser.Name}</span> : null}
+        {isLoggedIn ? (
+          <Button
+            onPress={(e) => {
+              logOut(e)
+            }}
+          >
+            <ButtonText>Log Out</ButtonText>
+          </Button>
+        ) : (
+          <Button {...linkSignIn}>
+            <ButtonText>Sign In</ButtonText>
+          </Button>
+        )}
+      </main>
+    </Nav>
+*/
